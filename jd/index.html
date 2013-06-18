@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>京东链接生成</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/static/images/apple-touch-icon-retina.png">
+		
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet"  href="/js/jqmobile/1.3.1/css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="/js/jqmobile/1.3.1/_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../../favicon.ico">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<script src="/js/jqmobile/1.3.1/js/jquery.js"></script>
+		<script src="/js/jqmobile/1.3.1/js/jquery.mobile-1.3.1.min.js"></script>
+	<script>
+		$(document).on("pageinit", function() {
+			var nextId = 1;
+
+			$("#add").click(function() {
+				nextId++;
+				var content = "<div data-role='collapsible' id='set" + nextId + "'><h3>Section " + nextId + "</h3><p>I am the collapsible content in a set so this feels like an accordion. I am hidden by default because I have the 'collapsed' state; you need to expand the header to see me.</p></div>";
+
+				$("#set").append( content ).collapsibleset('refresh');
+			});
+
+			$("#expand").click(function() {
+				$("#set").children(":last").trigger( "expand" );
+			});
+
+			$("#collapse").click(function() {
+				$("#set").children(":last").trigger( "collapse" );
+			});
+			//$("#list li").not( "[data-role='list-divider']" ).remove();
+			$('input[type="submit"]').click(function(){
+				var url = "http://click.union.jd.com/JdClick/?unionId=26580&t=4&to=http://www.jd.com/product/"+$("#text-1").val()+".html";
+				$("#jdLink").html("<a href='"+url+"' target='_blank'>"+url+"</a>");
+				//console.log(data)
+				return false;
+			});
+		});
+	</script>
+
+		
+		
+		
+	</head>
+	<body>
+		
+<div data-role="page" id="demo-page" data-title="京东链接生成" data-theme="d">
+<!--
+NOTE: If you modify this page make sure you copy your modifications over to
+#sample-page below so that your modifications will be reflected in the source
+code view
+-->
+    <div data-role="header"  data-theme="b">
+		京东链接生成
+	</div>
+ <div data-role="content">
+
+   <form action="/auth/signIn" method="POST" id="loginForm">
+	<input type="hidden" name="targetUri" value="/mobile/home" />
+	<input type="hidden" name="userType" value="2" />
+     <label for="text-1"> 商品编号：</label>
+     <input type="text" data-clear-btn="true" name="prodNo" id="text-1" value="">
+	 <input type="submit" value="确认生成" data-icon="check" data-iconpos="right" data-mini="true" data-theme="e">
+</form>
+        <h2 id="Markupconventions">生成链接：</h2>
+		<p id="jdLink"></p>
+		</div><!-- /content -->
+
+		<div data-role="footer" class="jqm-footer">
+			<p class="jqm-version"></p>
+			<p>Copyright 2013 The jQuery Foundation</p>
+		</div><!-- /footer -->
+    
+		
+
+	</div><!-- /page -->
+	
+		
+	</body>
+</html>
